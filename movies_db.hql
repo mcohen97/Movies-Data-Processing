@@ -3,7 +3,7 @@ USE movies_big_data;
 CREATE EXTERNAL TABLE IF NOT EXISTS movies (
   adult boolean,
   budget int,
-  id int,
+  movie_id int,
   original_language string,
   original_title string,
   overview string,
