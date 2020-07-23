@@ -3,7 +3,7 @@ USE movies_big_data;
 CREATE EXTERNAL TABLE IF NOT EXISTS movies (
   adult boolean,
   budget int,
-  id int,
+  movie_id int,
   original_language string,
   original_title string,
   overview string,
@@ -11,9 +11,8 @@ CREATE EXTERNAL TABLE IF NOT EXISTS movies (
   release_date date,
   revenue int,
   title string,
-  vote_average float,
   vote_count int,
-  rating int
+  rating float
 ) 
 STORED AS PARQUET 
 LOCATION '/obligatorio/processed_tables/movies';
@@ -47,7 +46,7 @@ STORED AS PARQUET
 LOCATION '/obligatorio/processed_tables/movies_prod_companies';
 
 CREATE EXTERNAL TABLE IF NOT EXISTS prod_countries (
-  id int,
+  id string,
   name string
 ) 
 STORED AS PARQUET 
@@ -55,13 +54,13 @@ LOCATION '/obligatorio/processed_tables/prod_countries';
 
 CREATE EXTERNAL TABLE IF NOT EXISTS movies_prod_countries (
   id_movie int,
-  id_prod_country int
+  id_prod_country string
 ) 
 STORED AS PARQUET 
 LOCATION '/obligatorio/processed_tables/movies_prod_countries';
 
 CREATE EXTERNAL TABLE IF NOT EXISTS spoken_languages (
-  id int,
+  id string,
   name string
 )
 STORED AS PARQUET 
@@ -69,14 +68,7 @@ LOCATION '/obligatorio/processed_tables/spoken_languages';
 
 CREATE EXTERNAL TABLE IF NOT EXISTS movies_spoken_languages (
   id_movie int,
-  id_spoken_language int
-) 
-STORED AS PARQUET 
-LOCATION '/obligatorio/processed_tables/movies_spoken_languages';
-
-CREATE EXTERNAL TABLE IF NOT EXISTS movies_spoken_languages (
-  id_movie int,
-  id_spoken_language int
+  id_spoken_language string
 ) 
 STORED AS PARQUET 
 LOCATION '/obligatorio/processed_tables/movies_spoken_languages';
@@ -100,8 +92,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS cast_actors (
   cast_id int, 
   character string,
   gender int,
-  name string,
-  c_order int
+  name string
 ) 
 STORED AS PARQUET 
 LOCATION '/obligatorio/processed_tables/cast';
